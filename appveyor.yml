@@ -1,0 +1,24 @@
+build: false  # Not a C# project
+environment:
+  matrix:
+    - TOXENV: py27
+    - TOXENV: py34
+    - TOXENV: py35
+    - TOXENV: py36
+
+matrix:
+  fast_finish: true
+
+install:
+  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
+  - "pip install --pre -U tox"
+
+test_script:
+  - "tox"
+
+# after_test:
+#   - "tox -e coverage,codecov"
+
+cache:
+  - '%LOCALAPPDATA%\pip\cache'
+  - '%USERPROFILE%\.cache\pre-commit'
