@@ -203,8 +203,8 @@ html_theme_options = {
     'logo_text_align': 'centered',
     'description': 'Retrieve data from Statistics Denmark',
 
-    'github_user': 'welchbj',
-    'github_repo': 'tt',
+    'github_user': 'elben10',
+    'github_repo': 'pydst',
     'github_type': 'star',
 
     'extra_nav_links': {},
