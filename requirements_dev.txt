@@ -11,3 +11,4 @@ click==6.7
 pytest==3.6.2
 pytest-runner==4.2
 codecov==2.0.15
+sphinx_click==1.2.0

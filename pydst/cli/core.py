@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """Console script for pydst."""
-import sys
 import click
 
 
@@ -12,7 +11,3 @@ def main(args=None):
                "pydst.cli.main")
     click.echo("See click documentation at http://click.pocoo.org/")
     return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover

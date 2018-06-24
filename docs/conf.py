@@ -32,7 +32,10 @@ import pydst
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.viewcode',
+              'sphinx_click.ext']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -160,3 +163,64 @@ texinfo_documents = [
 ]
 
 html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
+
+import codecs
+import os
+import sys
+
+from datetime import datetime
+
+
+# HERE = os.path.dirname(os.path.abspath(__file__))
+# BASE_DIR = os.path.dirname(HERE)
+# TT_MODULE_DIR = os.path.join(BASE_DIR, 'tt')
+# TT_VERSION_FILE = os.path.join(TT_MODULE_DIR, 'version.py')
+# sys.path.insert(0, BASE_DIR)
+#
+# with codecs.open(TT_VERSION_FILE, encoding='utf-8') as f:
+#     exec(f.read())  # loads __version__ and __version_info__
+
+
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+
+autodoc_default_flags = ['members',
+                         'special-members',
+                         'show-inheritance']
+
+suppress_warnings = ['image.nonlocal_uri']
+
+html_theme = 'alabaster'
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',
+        'searchbox.html'
+    ]
+}
+html_theme_options = {
+    'logo': 'logo.png',
+    'logo_text_align': 'centered',
+    'description': 'Retrieve data from Statistics Denmark',
+
+    'github_user': 'welchbj',
+    'github_repo': 'tt',
+    'github_type': 'star',
+
+    'extra_nav_links': {},
+    'sidebar_includehidden': True,
+    'fixed_sidebar': False,
+
+    'warn_bg': '#f9e3ed',
+    'warn_border': '#ffa5ce',
+    'note_bg': '#e8f0fc',
+    'note_border': '#c4daff',
+    'pre_bg': '#f9f4fc',
+
+    'font_family': "'PT Sans Caption', sans-serif",
+    'font_size': '0.9em',
+    'head_font_family': "'Cabin', sans-serif"
+}
+
+templates_path = ['_templates']
+html_static_path = ['_static']
