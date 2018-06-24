@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from .cli import core
+
 """Top-level package for Pydst."""
 
 __author__ = """Jakob Jul Elben, Kristian Urup Larsen"""

@@ -1,20 +1,25 @@
 Welcome to Pydst's documentation!
 =================================
 
+.. include:: ../README.rst
+
+
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
+    :hidden:
+    :maxdepth: 2
 
-   readme
-   installation
-   usage
-   modules
-   contributing
-   authors
-   history
+    installation
+    usage
+    contributing
+    authors
+    history
 
-Indices and tables
-==================
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+Want to learn more?
+-------------------
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    api/*
