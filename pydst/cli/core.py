@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """Console script for pydst."""
-import sys
 import click
+
 
 @click.command()
 def main(args=None):
