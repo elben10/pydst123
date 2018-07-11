@@ -1,4 +1,5 @@
-from .cli.core import main
+from .Cli.core import main
+
 
 if '__main__' == __main__:
     main()

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .cli import core
+from . import Cli
+from . import Requests
 
 """Top-level package for Pydst."""
 

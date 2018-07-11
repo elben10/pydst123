@@ -34,7 +34,7 @@ setup(
     description="Provides a simple API for Statistics Denmark",
     entry_points={
         'console_scripts': [
-            'pydst=pydst.cli:main',
+            'pydst=pydst.Cli:main',
         ],
     },
     install_requires=requirements,

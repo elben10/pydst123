@@ -5,7 +5,7 @@
 
 import pytest
 from click.testing import CliRunner
-from pydst import cli
+from pydst import Cli
 
 
 @pytest.fixture
@@ -14,8 +14,8 @@ def response():
 
     See more at: http://doc.pytest.org/en/latest/fixture.html
     """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+    # import Requests
+    # return Requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 
 def test_content(response):
@@ -27,9 +27,9 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(Cli.main)
     assert result.exit_code == 0
-    assert 'pydst.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
+    assert 'pydst.Cli.main' in result.output
+    help_result = runner.invoke(Cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
