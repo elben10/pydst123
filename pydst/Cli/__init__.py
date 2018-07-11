@@ -1,2 +1,2 @@
 """Console script for pydst."""
-from .core import *
+from . import core

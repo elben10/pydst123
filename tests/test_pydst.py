@@ -27,9 +27,9 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(Cli.main)
+    result = runner.invoke(Cli.core.main)
     assert result.exit_code == 0
     assert 'pydst.Cli.main' in result.output
-    help_result = runner.invoke(Cli.main, ['--help'])
+    help_result = runner.invoke(Cli.core.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
