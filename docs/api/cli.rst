@@ -1,14 +1,14 @@
 =======
-``cli``
+``Cli``
 =======
 
-.. automodule:: pydst.cli
+.. automodule:: pydst.Cli
 
 
 ``cli.core`` module
 -------------------
 
 
-.. click:: pydst.cli:main
+.. click:: pydst.Cli.core:main
    :prog: pydst
    :show-nested:
