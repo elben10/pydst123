@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from . import Connection
 from . import Cli
+
 
 """Top-level package for Pydst."""
 
