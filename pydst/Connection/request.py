@@ -42,7 +42,8 @@ def dst_error(response):
     """Checks if an error is reported from Statistics Denmark.
 
     Args:
-        reponse (:class:`Response<requests:requests.Response>`): A HTTP reponse from requests.
+        reponse (:class:`Response<requests:requests.Response>`):
+            A HTTP reponse from requests.
 
     """
     key_list = list(response.headers.keys())
