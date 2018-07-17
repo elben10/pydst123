@@ -2,6 +2,7 @@
 
 from . import Connection
 from . import Cli
+from . import DataRetrieval
 
 
 """Top-level package for Pydst."""
