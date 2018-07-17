@@ -1,58 +1,52 @@
-from requests import get
-from types import MethodType
+from requests.api import get
+from requests.compat import is_py2
 from requests.exceptions import HTTPError
-from sys import version_info
 
-if version_info[0] == 2:
-    from urlparse import urljoin, urlparse, urlunparse
-else:
-    from urllib.parse import urljoin, urlparse, urlunparse
+
+if is_py2:  # pragma: no cover
+    from urlparse import urljoin, urlparse, urlunparse  # pragma: no cover
+else:  # pragma: no cover
+    from urllib.parse import urljoin, urlparse, urlunparse  # pragma: no cover
 
 
 def dst_request(path, params=None):
-    """ """
+    """Send get request to Statistics Denmark.
+
+    Sends a get request to Statistics Denmark. Raises an HTTPError
+        if an error message from Statistics Denmark is present.
+        Otherwise a :class:`Response<requests:requests.Response>` is returned.
+
+    Args:
+        path (:obj:`str`): The path is added as the path to the base url.
+
+        params (:obj:`dict`): The params is added as the query to the base url.
+    """
     parsed = urlparse('http://api.statbank.dk/v1/')
     url = urlunparse([parsed.scheme, parsed.hostname,
                       urljoin(parsed.path, path),
                       parsed.params, parsed.query,
                       parsed.fragment])
-    return get2(url, params)
+    r = get(url, params)
 
+    if dst_error(r):
+        http_error_msg = u'%s Client Error: %s for url: %s'\
+                         % (r.status_code, r.reason, r.url)
+        http_error_msg += u'\nError message from Statistics Denmark: \n\t> %s'\
+                          % r.json().get('message', 'No error message.')
+        raise HTTPError(http_error_msg, response=r)
 
-def get2(url, params=None, **kwargs):
-    """ """
-    r = get(url, params, **kwargs)
-    r.raise_for_status_2 = MethodType(raise_for_status, r)
     return r
 
 
-def raise_for_status(self):
-    """Raises stored :class:`HTTPError`, if one occurred."""
+def dst_error(response):
+    """Checks if an error is reported from Statistics Denmark.
 
-    http_error_msg = ''
-    if isinstance(self.reason, bytes):
-        # We attempt to decode utf-8 first because some servers
-        # choose to localize their reason strings. If the string
-        # isn't utf-8, we fall back to iso-8859-1 for all other
-        # encodings. (See PR #3538)
-        try:
-            reason = self.reason.decode('utf-8')
-        except UnicodeDecodeError:
-            reason = self.reason.decode('iso-8859-1')
-    else:
-        reason = self.reason
+    Args:
+        reponse (:class:`Response<requests:requests.Response>`): A HTTP reponse from requests.
 
-    if 400 <= self.status_code < 500:
-        http_error_msg = u'%s Client Error: %s for url: %s' \
-                         % (self.status_code, reason, self.url)
+    """
+    key_list = list(response.headers.keys())
+    if [i for i in key_list if i.startswith('StatbankAPI-Error')]:
+        return True
 
-    elif 500 <= self.status_code < 600:
-        http_error_msg = u'%s Server Error: %s for url: %s' \
-                         % (self.status_code, reason, self.url)
-
-    if isinstance(self.json(), dict) and 'errorTypeCode' in self.json().keys():
-            http_error_msg += u'\nError message from Statistics Denmark:' \
-                          u'\n\t> %s' % self.json().get('message')
-
-    if http_error_msg:
-        raise HTTPError(http_error_msg, response=self)
+    return False

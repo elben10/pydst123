@@ -15,7 +15,7 @@ requirements = ['Click>=6.0', ]
 
 setup_requirements = ['pytest-runner', 'setuptools_scm']
 
-test_requirements = ['pytest']
+test_requirements = ['pytest', 'requests']
 
 setup(
     author="Jakob Jul Elben, Kristian Urup Larsen",
