@@ -34,6 +34,7 @@ import pydst
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.intersphinx',
+              'sphinx.ext.napoleon',
               'sphinx.ext.viewcode',
               'sphinx_click.ext']
 
@@ -181,7 +182,10 @@ from datetime import datetime
 #     exec(f.read())  # loads __version__ and __version_info__
 
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'requests': ('http://docs.python-requests.org/en/latest/', None),
+    }
 
 autodoc_default_flags = ['members',
                          'special-members',
