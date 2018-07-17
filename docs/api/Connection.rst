@@ -5,7 +5,7 @@
 .. automodule:: pydst.Connection
 
 
-``pydst.Connection`` module
-----------------------------
+``Connection.request`` module
+------------------------------
 
 .. automodule:: pydst.Connection.request
