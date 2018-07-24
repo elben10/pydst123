@@ -1,1 +1,1 @@
-from . import request
+from pydst.Connection import request

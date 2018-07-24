@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from . import Connection
-from . import Cli
-from . import DataRetrieval
+from pydst.DataRetrieval.userinterface import DST
+
+from pydst import Connection
+from pydst import Cli
+from pydst import DataRetrieval
 
 
 """Top-level package for Pydst."""
