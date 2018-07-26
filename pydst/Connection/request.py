@@ -1,12 +1,7 @@
 from requests.api import get
-from requests.compat import is_py2
 from requests.exceptions import HTTPError
 
-
-if is_py2:  # pragma: no cover
-    from urlparse import urljoin, urlparse, urlunparse  # pragma: no cover
-else:  # pragma: no cover
-    from urllib.parse import urljoin, urlparse, urlunparse  # pragma: no cover
+from urllib.parse import urljoin, urlparse, urlunparse  # pragma: no cover
 
 
 def dst_request(path, params=None):
