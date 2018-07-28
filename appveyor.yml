@@ -1,22 +1,30 @@
 build: false  # Not a C# project
 environment:
   matrix:
-    - TOXENV: py35
-    - TOXENV: py36
-    - TOXENV: py37
+    - PYTHON: "C:\\Python35"
+      TOXENV: py35
+    - PYTHON: "C:\\Python36"
+      TOXENV: py36
+    - PYTHON: "C:\\Python37"
+      TOXENV: py37
+    - PYTHON: "C:\\Python37"
+      TOXENV: docs
+    - PYTHON: "C:\\Python37"
+      TOXENV: coverage
+    - PYTHON: "C:\\Python37"
+      TOXENV: lint
 
 matrix:
   fast_finish: true
 
 install:
-  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
-  - "pip install --pre -U tox"
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "python --version"
+  - "python -m pip install --upgrade pip"
+  - "python -m pip install -r requirements_dev.txt"
 
 test_script:
-  - "tox"
-
-# after_test:
-#   - "tox -e coverage,codecov"
+  - "python -m tox"
 
 cache:
   - '%LOCALAPPDATA%\pip\cache'

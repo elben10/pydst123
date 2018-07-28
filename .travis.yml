@@ -18,13 +18,9 @@ matrix:
     - python: 3.6
       env: TOXENV=lint
 
-
-before_install:
- - pyenv versions
-
 install:
-  - pip install -U six
-  - pip install --pre -U tox
+  - pip install --upgrade pip
+  - pip install -rrequirements_dev.txt
 
 script:
   - tox
