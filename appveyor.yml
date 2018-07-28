@@ -11,13 +11,13 @@ matrix:
   fast_finish: true
 
 install:
-  - "SET PATH=%PYTHON%;%path%"
+  - "SET PATH=%PYTHON%;%PYTHON%\Scripts;%path%"
   - "python --version"
   - "python -m pip install --upgrade pip"
   - "python -m pip install -r requirements_dev.txt"
 
 test_script:
-  - "tox"
+  - "python -m tox"
 
 cache:
   - '%LOCALAPPDATA%\pip\cache'
