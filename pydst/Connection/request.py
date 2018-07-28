@@ -15,19 +15,31 @@ def dst_request(path, params=None):
         path (:obj:`str`): The path is added as the path to the base url.
 
         params (:obj:`dict`): The params is added as the query to the base url.
+
+    Todo:
+        * Improve documentation
     """
-    parsed = urlparse('http://api.statbank.dk/v1/')
-    url = urlunparse([parsed.scheme, parsed.hostname,
-                      urljoin(parsed.path, path),
-                      parsed.params, parsed.query,
-                      parsed.fragment])
+    parsed = urlparse("http://api.statbank.dk/v1/")
+    url = urlunparse(
+        [
+            parsed.scheme,
+            parsed.hostname,
+            urljoin(parsed.path, path),
+            parsed.params,
+            parsed.query,
+            parsed.fragment,
+        ]
+    )
     r = get(url, params)
 
     if dst_error(r):
-        http_error_msg = u'%s Client Error: %s for url: %s'\
-                         % (r.status_code, r.reason, r.url)
-        http_error_msg += u'\nError message from Statistics Denmark: \n\t> %s'\
-                          % r.json().get('message', 'No error message.')
+        http_error_msg = u"%s Client Error: %s for url: %s" % (
+            r.status_code,
+            r.reason,
+            r.url,
+        )
+        http_error_msg += u"\nError message from Statistics Denmark: \n\t> %s"\
+                          % r.json().get("message", "No error message.")
         raise HTTPError(http_error_msg, response=r)
 
     return r
@@ -40,9 +52,12 @@ def dst_error(response):
         response (:class:`Response<requests:requests.Response>`):
             A HTTP reponse from requests.
 
+    Todo:
+        * Improve docs
+
     """
     key_list = list(response.headers.keys())
-    if [i for i in key_list if i.startswith('StatbankAPI-Error')]:
+    if [i for i in key_list if i.startswith("StatbankAPI-Error")]:
         return True
 
     return False

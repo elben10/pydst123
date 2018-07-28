@@ -4,6 +4,7 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+from pydst import __author__, __email__,__version__
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -13,13 +14,13 @@ with open('HISTORY.rst') as history_file:
 
 requirements = ['Click>=6.0', ]
 
-setup_requirements = ['pytest-runner', 'setuptools_scm']
+setup_requirements = ['pytest-runner']
 
 test_requirements = ['pytest', 'requests']
 
 setup(
-    author="Jakob Jul Elben, Kristian Urup Larsen",
-    author_email='elbenjakobjul@gmail.com, kristianuruplarsen@gmail.com',
+    author=__author__,
+    author_email=__email__,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -49,6 +50,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/elben10/pydst',
-    use_scm_version=True,
+    version=__version__,
     zip_safe=False,
 )
