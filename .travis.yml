@@ -25,6 +25,7 @@ before_install:
 install:
   - pip install -U six
   - pip install --pre -U tox
+  - pip install -U -rrequirements_dev.txt
 
 script:
   - tox

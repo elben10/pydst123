@@ -11,6 +11,7 @@ matrix:
 install:
   - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
   - "pip install --pre -U tox"
+  - "python -m pip install -rrequirements.txt"
 
 test_script:
   - "tox"
