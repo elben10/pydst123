@@ -3,27 +3,21 @@ environment:
   matrix:
     - PYTHON: "C:\\Python35"
       TOXENV: py35
-      TOXPYTHON: "%PYTHON%\\python.exe"
     - PYTHON: "C:\\Python36"
       TOXENV: py36
-      TOXPYTHON: "%PYTHON%\\python.exe"
     - PYTHON: "C:\\Python37"
       TOXENV: py37
-      TOXPYTHON: "%PYTHON%\\python.exe"
 matrix:
   fast_finish: true
 
 install:
-  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
-  - "pip install --pre -U tox"
+  - "SET PATH=%PYTHON%;%path%"
   - "python -m pip install --upgrade pip"
+  - "pip install --pre -U tox"
   - "%CMD_IN_ENV% pip install -r requirements_dev.txt"
 
 test_script:
   - "tox"
-
-# after_test:
-#   - "tox -e coverage,codecov"
 
 cache:
   - '%LOCALAPPDATA%\pip\cache'
