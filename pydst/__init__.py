@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """Top-level package for Pydst."""
 
+from .DataRetrieval.userinterface import DST
+
 from . import Connection
 from . import Cli
-from subprocess import Popen, PIPE
+from . import DataRetrieval
+from subprocess import Popen as _Popen, PIPE as _PIPE
 
 
 def _git_version():
-    process = Popen(["git", "describe"], stdout=PIPE)
+    process = _Popen(["git", "describe"], stdout=_PIPE)
     out, _ = process.communicate()
     return ".".join(out.decode("utf-8").split("-", 1)[0][1:].split(".")[:3])
 
